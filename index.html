@@ -2,45 +2,85 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>hihiHiiHIiiiiiiheyyhd</title>
+  <title>hihihihiiHIIHHHIhyeyheyhyHHey</title>
 
   <style>
     body {
       margin: 0;
       height: 100vh;
+      background: #0f0f0f;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #0f0f0f;
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
     }
 
-    img {
+    #startText {
+      font-size: 24px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    #logo {
+      display: none;
       width: 200px;
       cursor: pointer;
       transition: transform 0.2s ease;
     }
 
-    img:hover {
+    #logo:hover {
       transform: scale(1.1);
     }
   </style>
 </head>
 <body>
 
+  <div id="startText">tap tap tap tap ppat tap</div>
+
   <img
     src="logo.png"
-    alt="Logo"
     id="logo"
+    alt="Logo"
   />
 
   <audio id="hoverSound" src="hover.mp3" preload="auto"></audio>
 
   <script>
+    const startText = document.getElementById("startText");
     const logo = document.getElementById("logo");
     const sound = document.getElementById("hoverSound");
 
+    let activated = false;
+
+    function activateSite() {
+      if (activated) return;
+      activated = true;
+
+      startText.style.display = "none";
+      logo.style.display = "block";
+
+      // Unlock audio on first interaction
+      sound.play().then(() => {
+        sound.pause();
+        sound.currentTime = 0;
+      }).catch(() => {});
+    }
+
+    // Any click or tap activates the site
+    document.addEventListener("click", activateSite);
+    document.addEventListener("touchstart", activateSite);
+
     logo.addEventListener("mouseenter", () => {
-      sound.currentTime = 0; // restart sound
+      sound.currentTime = 0;
+      sound.play();
+    });
+
+    // Mobile fallback
+    logo.addEventListener("click", () => {
+      sound.currentTime = 0;
       sound.play();
     });
   </script>
