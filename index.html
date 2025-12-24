@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>hihiHiiHIiiiiiiheyyhd</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0f0f0f;
+    }
+
+    img {
+      width: 200px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    img:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <img
+    src="logo.png"
+    alt="Logo"
+    id="logo"
+  />
+
+  <audio id="hoverSound" src="hover.mp3" preload="auto"></audio>
+
+  <script>
+    const logo = document.getElementById("logo");
+    const sound = document.getElementById("hoverSound");
+
+    logo.addEventListener("mouseenter", () => {
+      sound.currentTime = 0; // restart sound
+      sound.play();
+    });
+  </script>
+
+</body>
+</html>
